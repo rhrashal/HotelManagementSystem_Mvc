@@ -1,0 +1,42 @@
+﻿@model HotelManagementSystem.Models.GeustFoodOrder
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Guest Name
+        </th>
+        <th>
+            Food Name
+        </th>
+        <th>
+            Quntity
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.OrderFoods)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guest.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Food.FoodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quntity)
+            </td>
+
+            <td>
+                @Html.ActionLink("Select", "getRelatedGuest", new { OrderId = item.OrderId }, new { @class = "btn" })|
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }, new { @class = "btn" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId }, new { @class = "btn" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+
+</table>

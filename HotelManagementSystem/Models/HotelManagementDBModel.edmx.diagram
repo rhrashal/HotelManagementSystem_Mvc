@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b479190da1334cb69e690a24030bc7e8" Name="Diagram1">
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Adult" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.BeddingType" Width="1.5" PointX="2.625" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Booking" Width="1.5" PointX="0.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Child" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Food" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Guest" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.OrderFood" Width="1.5" PointX="8.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Reservasion" Width="1.5" PointX="7" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.Room" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.RoomQuantity" Width="1.5" PointX="3.125" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HotelManagementDB_DataModel.RoomType" Width="1.5" PointX="0.5" PointY="12.875" IsExpanded="true" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Booking__AdultId__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Reservasi__Adult__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Booking__Bedding__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Room__BeddingTyp__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Booking__ChildId__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Booking__RoomQua__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Booking__RoomTyp__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Reservasi__Child__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__OrderFood__FoodI__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__OrderFood__Guest__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Reservasi__Guest__46E78A0C" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Reservasi__RoomI__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Reservasi__RoomQ__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="HotelManagementDB_DataModel.FK__Room__RoomTypeId__3B75D760" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelManagementDB_DataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Adult">
+    <Key>
+      <PropertyRef Name="AdultId" />
+    </Key>
+    <Property Name="AdultId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberOfAdults" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BeddingType">
+    <Key>
+      <PropertyRef Name="BeddingTypeId" />
+    </Key>
+    <Property Name="BeddingTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BeddingTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookingId" />
+    </Key>
+    <Property Name="BookingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NID_No" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ArrivalTime" Type="datetime" />
+    <Property Name="DepartureDate" Type="datetime" />
+    <Property Name="AdultId" Type="int" />
+    <Property Name="ChildId" Type="int" />
+    <Property Name="RoomTypeId" Type="int" />
+    <Property Name="BeddingTypeId" Type="int" />
+    <Property Name="RoomQuantityId" Type="int" />
+    <Property Name="Notes" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Child">
+    <Key>
+      <PropertyRef Name="ChildId" />
+    </Key>
+    <Property Name="ChildId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberOfChild" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="FoodId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="varchar" MaxLength="500" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="500" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <EntityType Name="Guest">
+    <Key>
+      <PropertyRef Name="GuestId" />
+    </Key>
+    <Property Name="GuestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NID_No" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderFood">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuestId" Type="int" />
+    <Property Name="FoodId" Type="int" />
+    <Property Name="Quntity" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Reservasion">
+    <Key>
+      <PropertyRef Name="ReservasionId" />
+    </Key>
+    <Property Name="ReservasionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GuestId" Type="int" />
+    <Property Name="RoomId" Type="int" />
+    <Property Name="AdultId" Type="int" />
+    <Property Name="ChildId" Type="int" />
+    <Property Name="RoomQuantityId" Type="int" />
+    <Property Name="ArrivalTime" Type="datetime" />
+    <Property Name="DepartureDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Name="RoomId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoomTypeId" Type="int" />
+    <Property Name="BeddingTypeId" Type="int" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="1000" />
+    <Property Name="Price" Type="money" />
+  </EntityType>
+  <EntityType Name="RoomQuantity">
+    <Key>
+      <PropertyRef Name="RoomQuantityId" />
+    </Key>
+    <Property Name="RoomQuantityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberOfRoom" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoomType">
+    <Key>
+      <PropertyRef Name="RoomTypeId" />
+    </Key>
+    <Property Name="RoomTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoomTypeName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Booking__AdultId__534D60F1">
+    <End Role="Adult" Type="Self.Adult" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adult">
+        <PropertyRef Name="AdultId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="AdultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__Bedding__5629CD9C">
+    <End Role="BeddingType" Type="Self.BeddingType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeddingType">
+        <PropertyRef Name="BeddingTypeId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="BeddingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__ChildId__5441852A">
+    <End Role="Child" Type="Self.Child" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Child">
+        <PropertyRef Name="ChildId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="ChildId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__RoomQua__571DF1D5">
+    <End Role="RoomQuantity" Type="Self.RoomQuantity" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomQuantity">
+        <PropertyRef Name="RoomQuantityId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="RoomQuantityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Booking__RoomTyp__5535A963">
+    <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="RoomTypeId" />
+      </Principal>
+      <Dependent Role="Booking">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderFood__FoodI__5070F446">
+    <End Role="Food" Type="Self.Food" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderFood" Type="Self.OrderFood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Food">
+        <PropertyRef Name="FoodId" />
+      </Principal>
+      <Dependent Role="OrderFood">
+        <PropertyRef Name="FoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__OrderFood__Guest__4F7CD00D">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderFood" Type="Self.OrderFood" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="GuestId" />
+      </Principal>
+      <Dependent Role="OrderFood">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservasi__Adult__48CFD27E">
+    <End Role="Adult" Type="Self.Adult" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservasion" Type="Self.Reservasion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Adult">
+        <PropertyRef Name="AdultId" />
+      </Principal>
+      <Dependent Role="Reservasion">
+        <PropertyRef Name="AdultId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservasi__Child__49C3F6B7">
+    <End Role="Child" Type="Self.Child" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservasion" Type="Self.Reservasion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Child">
+        <PropertyRef Name="ChildId" />
+      </Principal>
+      <Dependent Role="Reservasion">
+        <PropertyRef Name="ChildId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservasi__Guest__46E78A0C">
+    <End Role="Guest" Type="Self.Guest" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservasion" Type="Self.Reservasion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guest">
+        <PropertyRef Name="GuestId" />
+      </Principal>
+      <Dependent Role="Reservasion">
+        <PropertyRef Name="GuestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservasi__RoomI__47DBAE45">
+    <End Role="Room" Type="Self.Room" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservasion" Type="Self.Reservasion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Reservasion">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Reservasi__RoomQ__4AB81AF0">
+    <End Role="RoomQuantity" Type="Self.RoomQuantity" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Reservasion" Type="Self.Reservasion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomQuantity">
+        <PropertyRef Name="RoomQuantityId" />
+      </Principal>
+      <Dependent Role="Reservasion">
+        <PropertyRef Name="RoomQuantityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__BeddingTyp__3C69FB99">
+    <End Role="BeddingType" Type="Self.BeddingType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BeddingType">
+        <PropertyRef Name="BeddingTypeId" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="BeddingTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Room__RoomTypeId__3B75D760">
+    <End Role="RoomType" Type="Self.RoomType" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Room" Type="Self.Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoomType">
+        <PropertyRef Name="RoomTypeId" />
+      </Principal>
+      <Dependent Role="Room">
+        <PropertyRef Name="RoomTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HotelManagementDB_DataModelStoreContainer">
+    <EntitySet Name="Adult" EntityType="Self.Adult" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BeddingType" EntityType="Self.BeddingType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Child" EntityType="Self.Child" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Guest" EntityType="Self.Guest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderFood" EntityType="Self.OrderFood" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reservasion" EntityType="Self.Reservasion" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomQuantity" EntityType="Self.RoomQuantity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoomType" EntityType="Self.RoomType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Booking__AdultId__534D60F1" Association="Self.FK__Booking__AdultId__534D60F1">
+      <End Role="Adult" EntitySet="Adult" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__Bedding__5629CD9C" Association="Self.FK__Booking__Bedding__5629CD9C">
+      <End Role="BeddingType" EntitySet="BeddingType" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__ChildId__5441852A" Association="Self.FK__Booking__ChildId__5441852A">
+      <End Role="Child" EntitySet="Child" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__RoomQua__571DF1D5" Association="Self.FK__Booking__RoomQua__571DF1D5">
+      <End Role="RoomQuantity" EntitySet="RoomQuantity" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Booking__RoomTyp__5535A963" Association="Self.FK__Booking__RoomTyp__5535A963">
+      <End Role="RoomType" EntitySet="RoomType" />
+      <End Role="Booking" EntitySet="Booking" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderFood__FoodI__5070F446" Association="Self.FK__OrderFood__FoodI__5070F446">
+      <End Role="Food" EntitySet="Food" />
+      <End Role="OrderFood" EntitySet="OrderFood" />
+    </AssociationSet>
+    <AssociationSet Name="FK__OrderFood__Guest__4F7CD00D" Association="Self.FK__OrderFood__Guest__4F7CD00D">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="OrderFood" EntitySet="OrderFood" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservasi__Adult__48CFD27E" Association="Self.FK__Reservasi__Adult__48CFD27E">
+      <End Role="Adult" EntitySet="Adult" />
+      <End Role="Reservasion" EntitySet="Reservasion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservasi__Child__49C3F6B7" Association="Self.FK__Reservasi__Child__49C3F6B7">
+      <End Role="Child" EntitySet="Child" />
+      <End Role="Reservasion" EntitySet="Reservasion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservasi__Guest__46E78A0C" Association="Self.FK__Reservasi__Guest__46E78A0C">
+      <End Role="Guest" EntitySet="Guest" />
+      <End Role="Reservasion" EntitySet="Reservasion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservasi__RoomI__47DBAE45" Association="Self.FK__Reservasi__RoomI__47DBAE45">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Reservasion" EntitySet="Reservasion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Reservasi__RoomQ__4AB81AF0" Association="Self.FK__Reservasi__RoomQ__4AB81AF0">
+      <End Role="RoomQuantity" EntitySet="RoomQuantity" />
+      <End Role="Reservasion" EntitySet="Reservasion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__BeddingTyp__3C69FB99" Association="Self.FK__Room__BeddingTyp__3C69FB99">
+      <End Role="BeddingType" EntitySet="BeddingType" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Room__RoomTypeId__3B75D760" Association="Self.FK__Room__RoomTypeId__3B75D760">
+      <End Role="RoomType" EntitySet="RoomType" />
+      <End Role="Room" EntitySet="Room" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

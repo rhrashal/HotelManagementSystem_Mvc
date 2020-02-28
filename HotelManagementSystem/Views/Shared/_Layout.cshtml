@@ -1,0 +1,216 @@
+﻿
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>Hotel Management System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body id="top">
+
+    <div class="bgded" style="background-image:url('../../Images/photos/header.png');">
+
+        <div class="wrapper row1">
+            <header id="header" class="hoc clear">
+                
+
+                <div id="logo" class="fl_left">
+                    <h1>@Html.ActionLink("Hotel Management System", "Index", "Home", new { area = "" }, new { @class = "" })</h1>
+                </div>
+                <nav id="mainav" class="fl_right">
+                    <ul class="clear">
+                        <li class="active"> <a href="~/Home/Index"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
+    
+                        <li>
+                            <a href="#"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a>
+                            <ul>
+                                <li>@Html.ActionLink("Room Collection", "About", "Home")</li>
+                                <li>@Html.ActionLink("Food Collection", "food", "Home")</li>
+                                <li> @Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "" })</li>
+                            </ul>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span></a>
+                                @*<a class="drop" href="#">glyphicon glyphicon-list</a>*@
+                                <ul>
+                                    <li>@Html.ActionLink("Request for Booking", "Create", "Bookings")</li>
+                                    <li>@Html.ActionLink("Order Foods", "addCard", "Foods")</li>
+                                    <li>@Html.ActionLink("Room Details", "getRoom", "Rooms")</li>
+                                </ul>
+                            </li>
+                        }
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></a>
+                                @*<a class="drop"  href="#">Admin Option</a>*@
+                                <ul>
+                                    <li>
+                                        <a class="drop" href="#">Reservasions</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("Reservasion List", "Index", "Reservasions")</li>
+                                            <li>@Html.ActionLink("New Booking", "Create", "Reservasions")</li>
+                                            <li>@Html.ActionLink("Bookings Requests List", "Index", "Bookings")</li>
+                                            <li>@Html.ActionLink("Room List", "Index", "Rooms")</li>
+                                            <li>@Html.ActionLink("Add New Room", "Create", "Rooms")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Food Order</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("Food Order List", "Index", "OrderFoods")</li>
+                                            <li>@Html.ActionLink("Select Guest Order", "getRelatedGuest", "OrderFoods")</li>
+                                            <li>@Html.ActionLink("New Order", "Create", "OrderFoods")</li>
+                                            <li>@Html.ActionLink("Food List", "Index", "Foods")</li>
+                                            <li>@Html.ActionLink("Add New Food", "Create", "Foods")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Guest Option</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("Guest List", "Index", "Guests")</li>
+                                            <li>@Html.ActionLink("Add New Guest", "Create", "Guests")</li>
+                                            <li>@Html.ActionLink("Add New Guest List", "MultuDataInsert", "Guests")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Managinng Option</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("Room Type List", "Index", "RoomTypes")</li>
+                                            <li>@Html.ActionLink("Beddding Type List", "Index", "BeddingTypes")</li>
+                                            <li>@Html.ActionLink("Adult List", "Index", "Adults")</li>
+                                            <li>@Html.ActionLink("Child List", "Index", "Children")</li>
+                                            <li>@Html.ActionLink("Room Quantitys", "Index", "RoomQuantities")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">User Option</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("All User List", "UserList", "RoleManage")</li>
+                                            <li>@Html.ActionLink("Create New User", "Register", "Account")</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a class="drop" href="#">Role Option</a>
+                                        <ul>
+                                            <li>@Html.ActionLink("All Role List", "Index", "RoleManage")</li>
+                                            <li>@Html.ActionLink("Create New Role", "RollCreate", "RoleManage")</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                        }
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+                                <ul>
+                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                    <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+
+                                </ul>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+                                <ul>
+                                    <li>@Html.ActionLink("User Profile", "UserProfile", "RoleManage")</li>
+                                    <li>@Html.ActionLink("Log Out", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                                    <li>@Html.ActionLink(User.Identity.Name + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { @class = "drop" })</li>
+                                </ul>
+                            </li>
+                        }
+
+
+                    </ul>
+
+                </nav>
+            </header>
+            @*@Html.Partial("_LoginPartial")*@
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+        <div class="wrapper row4">
+            <footer id="footer" class="hoc clear">
+                <div class="one_third first">
+                    <h6 class="heading">Branch Location </h6>
+                    <ul class="nospace linklist">
+                        <li><a href="#">Dhaka</a></li>
+                        <li><a href="#">Chitagong</a></li>
+                        <li><a href="#">Cox's Bazar</a></li>
+                        <li><a href="#">Bandharban</a></li>
+                    </ul>
+                </div>
+
+
+
+                <div class="one_third">
+                    <h6 class="heading">Developer Information</h6>
+                    <ul class="nospace btmspace-30 linklist contact">
+                        <li>
+                            <i class="fa fa-map-marker"></i>
+                            <address>
+                                Kathal Bagan &amp; 1205, Dhaka, 3500/Zip
+                            </address>
+                        </li>
+                        <li><i class="fa fa-phone"></i> +01812-783839</li>
+                        <li><i class="fa fa-envelope-o"></i> rhidb1251184@gmail.com</li>
+                    </ul>
+                    <ul class="faico clear">
+                        <li><a class="faicon-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a class="faicon-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a class="faicon-dribble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                        <li><a class="faicon-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a class="faicon-google-plus" href="#"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a class="faicon-vk" href="#"><i class="fa fa-vk"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="one_third">
+                    <h6 class="heading">COMPANY</h6>
+                    <ul class="nospace linklist">
+                        <li>@Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, new { @class = "" })
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li>@Html.ActionLink("About Us", "Contact", "Home", new { area = "" }, new { @class = "" })
+
+                    </ul>
+                </div>
+            </footer>
+        </div>
+        <div class="wrapper row5">
+            <div id="copyright" class="hoc clear">
+
+                <p class="fl_left">Copyright &copy; @DateTime.Now.Year - All Rights Reserved - <a href="#">Robiul Hossain</a></p>
+                <p class="fl_right">Robiul Hossain <a target="_blank" href="#" title="">rhidb1251184@gmail.com</a></p>
+
+            </div>
+        </div>
+
+
+        <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>
+
+    </div>
+    <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery.backtotop.js"></script>
+    <script src="~/Scripts/jquery.mobilemenu.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

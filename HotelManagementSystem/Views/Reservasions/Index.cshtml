@@ -1,0 +1,115 @@
+﻿@model PagedList.IPagedList<HotelManagementSystem.Models.Reservasion>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+
+
+@*@model IEnumerable<HotelManagementSystem.Models.Reservasion>*@
+
+@{
+    ViewBag.Title = "Reservation List";
+}
+
+<h2>Index</h2>
+
+
+@using (Html.BeginForm("Index", "Reservasions", FormMethod.Post))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+        @*<input type="text" name="SearchString" class="form-control" />*@
+        <button type="submit"  class="btn" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </p>
+
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Arrival Time
+        </th>
+        <th>
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            @Html.ActionLink("Departure Date", "Index", new { sortOrder = ViewBag.DateSortParm })
+            @*@Html.DisplayNameFor(model => model.DepartureDate)*@
+        </th>
+        <th>
+            No of Adult
+        </th>
+        <th>
+            No of Child
+        </th>
+
+        <th>
+            Room Type
+        </th>
+        <th>
+            Room Quantity
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArrivalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guest.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Guest.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartureDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adult.AdultId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Child.ChildId)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.RoomTypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomQuantity.RoomQuantityId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ReservasionId }, new { @class = "btn" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ReservasionId }, new { @class = "btn" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ReservasionId }, new { @class = "btn" })
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+                                                new
+                                                {
+                                                    page,
+                                                    sortOrder = ViewBag.CurrentSort,
+                                                    currentFilter = ViewBag.CurrentFilter
+                                                }))
+
+
+@*
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+
+*@

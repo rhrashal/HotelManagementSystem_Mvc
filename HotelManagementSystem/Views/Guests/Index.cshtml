@@ -1,0 +1,86 @@
+﻿@model PagedList.IPagedList<HotelManagementSystem.Models.Guest>
+@using PagedList.Mvc;
+@*@model IEnumerable<HotelManagementSystem.Models.Guest>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", null, new { @class = "form-control" })
+        <button type="submit"  class="btn" ><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+    </p>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            Last Name
+        </th>
+        <th>
+            Living Address
+        </th>
+        <th>
+            Email Address
+        </th>
+        <th>
+            Mobile Phone
+        </th>
+        <th>
+            NID/Passport Number
+            @*@Html.DisplayNameFor(model => model.NID_No)*@
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NID_No)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GuestId }, new { @class = "btn" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GuestId }, new { @class = "btn" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GuestId }, new { @class = "btn" })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+@Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+                                                new
+                                                {
+                                                    page,
+                                                    sortOrder = ViewBag.CurrentSort,
+                                                    currentFilter = ViewBag.CurrentFilter
+                                                }))

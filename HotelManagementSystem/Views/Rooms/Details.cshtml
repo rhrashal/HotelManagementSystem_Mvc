@@ -1,0 +1,59 @@
+﻿@model HotelManagementSystem.Models.Room
+
+@{
+    ViewBag.Title = "Details";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Details</h2>
+
+<div>
+    <h4>Room</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ImageUrl) " alt="image not supported" class="img-rounded" height="300" width="300" />
+            @*@Html.DisplayFor(model => model.ImageUrl)*@
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BeddingType.BeddingTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BeddingType.BeddingTypeName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomType.RoomTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomType.RoomTypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

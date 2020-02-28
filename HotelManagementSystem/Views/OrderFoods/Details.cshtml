@@ -1,0 +1,42 @@
+﻿@model HotelManagementSystem.Models.OrderFood
+
+@{
+    ViewBag.Title = "Details";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Details</h2>
+
+<div>
+    <h4>OrderFood</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Quntity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quntity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Food.FoodName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Food.FoodName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guest.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guest.FirstName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

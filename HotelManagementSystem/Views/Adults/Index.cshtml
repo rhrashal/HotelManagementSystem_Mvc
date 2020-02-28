@@ -1,0 +1,34 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.Adult>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfAdults)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfAdults)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.AdultId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AdultId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AdultId })
+            </td>
+        </tr>
+    }
+
+</table>

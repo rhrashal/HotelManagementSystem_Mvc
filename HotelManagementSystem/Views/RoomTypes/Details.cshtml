@@ -1,0 +1,26 @@
+﻿@model HotelManagementSystem.Models.RoomType
+
+@{
+    ViewBag.Title = "Details";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Details</h2>
+
+<div>
+    <h4>RoomType</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RoomTypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RoomTypeName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RoomTypeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,106 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.Food>
+
+@{
+    ViewBag.Title = "Index";
+}
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Index</h2>
+
+<table id="infoTable" class="table">
+    <thead>
+        <tr>
+            <th>Item No </th>
+            <th>Food Name </th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+<h3>Food List</h3>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            Foods Image
+            @*@Html.DisplayNameFor(model => model.ImageUrl)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                <img src="@Url.Content(item.ImageUrl) " alt="image not supported" class="img-circle" height="150" width="150" />
+                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+
+                    <input type="button" value="Add to Chart" class="btn" onclick="addCartList( '@item.FoodName' )" />
+                </td>
+            }
+        </tr>
+    }
+
+</table>
+
+
+
+<script>
+    var guestId = 0;
+    var guestList = [];
+
+    function addCartList(foodname) {
+        guestId = 0;
+        var guestDetails = {};
+        guestDetails["GuestId"] = guestList.length + 1;
+        guestDetails["Name"] = foodname;
+        guestList.push(guestDetails);
+        fillTable();
+    }
+
+    function fillTable() {
+        $('#infoTable > tbody').empty();
+
+        guestList.forEach(function (val) {
+            $('#infoTable > tbody:last-child').append('<tr><td>' + val.GuestId + '</td><td>' + val.Name + '</td><td> <button type="button" class="btn" onclick="tempDelete(' + val.GuestId + ')" ><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></td></tr>');
+        })
+
+    }
+
+    function tempDelete(GuestId) {
+        remove(guestList, GuestId);
+        fillTable();
+    }
+
+    function remove(arr, item) {
+        for (var i = arr.length; i--;) {
+            if (arr[i].GuestId === item) {
+                arr.splice(i, 1);
+            }
+        }
+        for (var i = 0; i < arr.length; i++) {
+            arr[i].GuestId = i + 1;
+        }
+
+    }
+
+
+</script>
+

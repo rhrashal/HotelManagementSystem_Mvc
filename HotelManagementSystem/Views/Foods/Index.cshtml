@@ -1,0 +1,54 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.Food>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+<h2>Index</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            Foods Image
+            @*@Html.DisplayNameFor(model => model.ImageUrl)*@
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                <img src="@Url.Content(item.ImageUrl) " alt="image not supported" class="img-circle" height="150" width="150" />
+                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FoodId }, new { @class = "btn" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FoodId }, new { @class = "btn" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FoodId }, new { @class = "btn" })
+                </td>
+            }
+        </tr>
+    }
+
+</table>

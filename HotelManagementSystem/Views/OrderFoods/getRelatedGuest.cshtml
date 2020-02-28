@@ -1,0 +1,96 @@
+﻿@model HotelManagementSystem.Models.GeustFoodOrder
+
+@{
+    ViewBag.Title = "getRelatedGuest";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+
+
+@if (Model.Foods != null)
+{
+
+    @Html.Partial("_FoodList")
+}
+
+@if (Model.OrderFoods != null)
+{
+    @Html.Partial("_OrderList")
+
+}
+
+
+@if (Model != null)
+{
+
+    <h2>Guest List</h2>
+
+    <p>
+        @*@Html.ActionLink("Create New", "Create")*@
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Guest Name
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>*@
+            <th>
+                Address
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Mobile
+            </th>
+            <th>
+                NID/Passport No
+            </th>
+            <th></th>
+        </tr>
+        @if (Model.Guests != null)
+        {
+
+            foreach (var item in Model.Guests)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NID_No)
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("select", "getRelatedGuest", new { GuestId = item.GuestId }, new { @class = "btn" })
+
+                        @*|@Html.ActionLink("Edit", "Edit", new { id = item.GuestId }, new { @class = "btn" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.GuestId }, new { @class = "btn" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.GuestId }, new { @class = "btn" })*@
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+
+
+
+
+
+@*<script type="text/javascript">
+    window.scrollTo(0, document.body.offsetHeight);
+</script>*@

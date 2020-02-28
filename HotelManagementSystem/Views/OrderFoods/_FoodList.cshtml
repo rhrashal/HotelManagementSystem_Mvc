@@ -1,0 +1,40 @@
+﻿@model HotelManagementSystem.Models.GeustFoodOrder
+
+
+<table class="table">
+    <tr>
+        <th>
+            Food Name)
+        </th>
+        <th>
+            Foods Image
+            @*@Html.DisplayNameFor(model => model.ImageUrl)*@
+        </th>
+        <th>
+            Price
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model.Foods)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                <img src="@Url.Content(item.ImageUrl) " alt="image not supported" class="img-circle" height="150" width="150" />
+                @*@Html.DisplayFor(modelItem => item.ImageUrl)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.FoodId }, new { @class = "btn" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.FoodId }, new { @class = "btn" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.FoodId }, new { @class = "btn" })
+                </td>*@
+        </tr>
+    }
+
+</table>

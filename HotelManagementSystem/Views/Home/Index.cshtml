@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<link href="~/Content/layout.css" rel="stylesheet" type="text/css" media="all">
+
+<marquee width="100%" direction="left" height="20px" style="color:chartreuse">
+    (HotelManagementSystem) is a family friendly resort,
+    where children are at the forefront. At the Kids’ Club,
+    our little guests and their families can play table football and board games,
+    or get creative at the special drawing tables. Our experienced staff also organizes kids’
+    entertainment sessions with fun activities and face painting.
+    Porto Zante also offers an outdoor playground, the Kids’ Corner,
+    and various beach & pool toys for young guests of all ages,
+    while children can relax at the specially decorated bedrooms,
+    enjoy a specially created kids’ menu or even visit the nearby water sports park and spend a day of splashing fun.
+    Condé Nast Traveller magazine in the UK selected Porto Zante Villas and Spa as one of the 14 Best Family Hotels in the World for 2020.
+</marquee>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="~/Images/Room/Hotel7.jpg" alt="Chania">
+            <div class="carousel-caption">
+                <h2>Hotel Shonarga</h2>
+                <p>Kaowan Bazar , Dhaka.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/Images/Room/Hotel8.jpg" alt="Chicago">
+            <div class="carousel-caption">
+                <h3>Hotel Dream Land</h3>
+                <p>Cox's Bazar, Chittagong.</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/Images/Room/Hotel6.jpg" alt="New York">
+            <div class="carousel-caption">
+                <h3>Hotel Paninsola</h3>
+                <p>Chittagong</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/Images/Room/Hotel4.jpg" alt="New York">
+            <div class="carousel-caption">
+                <h3>Hotel Paninsola</h3>
+                <p>Chittagong</p>
+            </div>
+        </div>
+
+        <div class="item">
+            <img src="~/Images/Room/Hotel5.jpg" alt="New York">
+            <div class="carousel-caption">
+                <h3>Hotel Paninsola</h3>
+                <p>Chittagong</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+
+@Html.Partial("_RoomCollecton")
+@Html.Partial("_FoodCollecton")
+
+
